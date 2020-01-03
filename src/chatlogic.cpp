@@ -207,6 +207,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         {
             //**it; // assign current node to root
             (*it).get()->MoveChatbotHere(_chatBot);
+            _chatBot->SetRootNode(&**it);
             cnt += 1;
             if (cnt > 1) {
                std::cout << "ERROR : Multiple root found " << std::endl;
