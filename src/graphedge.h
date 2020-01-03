@@ -16,11 +16,20 @@ private:
     // proprietary members
     int _id;
     std::vector<std::string> _keywords; // list of topics associated with this edge
-    
+
 
 public:
     // constructor / desctructor
     GraphEdge(int id);
+    ~GraphEdge();
+
+    GraphEdge(const GraphEdge& other); // copy constructor
+
+    GraphEdge(GraphEdge&& other) noexcept; // move constructor
+
+    GraphEdge& operator=(const GraphEdge& other); // copy assignment
+
+    GraphEdge& operator=(GraphEdge&& other) noexcept; // move assignment
 
     // getter / setter
     int GetID() { return _id; }
