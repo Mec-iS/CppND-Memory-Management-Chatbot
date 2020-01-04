@@ -19,10 +19,10 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    // _chatBot = new ChatBot("../images/chatbot.png");
+    //
+    // // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    // _chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -34,7 +34,7 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    delete _chatBot;
+    // delete _chatBot;
 
     // delete all nodes
     // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -198,16 +198,16 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     ////
 
     // identify root node
-    //GraphNode *rootNode = nullptr;
+    GraphNode *rootNode = nullptr;
     int cnt = 0;
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         // search for nodes which have no incoming edges
         if ((*it)->GetNumberOfParents() == 0)
         {
-            //**it; // assign current node to root
-            (*it).get()->MoveChatbotHere(_chatBot);
-            _chatBot->SetRootNode(&**it);
+            // assign current node to root
+            rootNode = (*it).get();
+
             cnt += 1;
             if (cnt > 1) {
                std::cout << "ERROR : Multiple root found " << std::endl;
@@ -221,9 +221,17 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
       return;
     }
 
-    // add chatbot to graph root node
-    //_chatBot->SetRootNode(rootNode);
-    //rootNode->MoveChatbotHere(_chatBot);
+    // create chatbot on the stack
+    ChatBot cb("../images/chatbot.png");
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    cb.SetChatLogicHandle(this);
+    cb.SetRootNode(rootNode);
+
+    _chatBot = &cb;
+    // assign current node to root
+    // (*it).get()->MoveChatbotHere(std::move(cb));
+    cb.getRootNode()->MoveChatbotHere(std::move(cb));
 
     ////
     //// EOF STUDENT CODE

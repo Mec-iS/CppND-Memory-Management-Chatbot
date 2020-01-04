@@ -30,13 +30,11 @@ public:
     //// STUDENT CODE
     ////
     ChatBot(const ChatBot& other); // copy constructor
-
     ChatBot(ChatBot&& other) noexcept; // move constructor
-
     ChatBot& operator=(const ChatBot& other); // copy assignment
-
     ChatBot& operator=(ChatBot&& other) noexcept; // move assignment
 
+    GraphNode* getRootNode() { return _rootNode; }
     ////
     //// EOF STUDENT CODE
 

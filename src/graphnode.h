@@ -21,7 +21,7 @@ private:
 
     // data handles (not owned)
     std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes
-    ChatBot *_chatBot;
+    ChatBot _chatBot;
 
     ////
     //// EOF STUDENT CODE
@@ -50,7 +50,12 @@ public:
     //// STUDENT CODE
     ////
 
-    void MoveChatbotHere(ChatBot *chatbot);
+    GraphNode(const GraphNode& other); // copy constructor
+    GraphNode(GraphNode&& other) noexcept; // move constructor
+    GraphNode& operator=(const GraphNode& other); // copy assignment
+    GraphNode& operator=(GraphNode&& other) noexcept; // move assignment
+
+    void MoveChatbotHere(ChatBot&& chatbot);
 
     ////
     //// EOF STUDENT CODE

@@ -49,6 +49,7 @@ ChatBot::ChatBot(const ChatBot& other) // copy constructor
   std::cout << "ChatBot copy constructor" << std::endl;
 
   _image = other._image;
+  _currentNode = other._currentNode;
   _chatLogic = other._chatLogic;
   _rootNode = other._rootNode;
 }
@@ -57,7 +58,8 @@ ChatBot::ChatBot(ChatBot&& other) noexcept // move constructor
 {
   std::cout << "ChatBot move constructor" << std::endl;
 
-  _image = std::move(other._image);
+  _image = other._image;
+  _currentNode = std::move(other._currentNode);
   _chatLogic = std::move(other._chatLogic);
   _rootNode = std::move(other._rootNode);
 }
@@ -73,7 +75,8 @@ ChatBot& ChatBot::operator=(ChatBot&& other) noexcept // move assignment
 {
   std::cout << "ChatBot move assignment" << std::endl;
 
-  std::swap(_image, other._image);
+  _image = other._image;
+  std::swap(_currentNode, other._currentNode);
   std::swap(_chatLogic, other._chatLogic);
   std::swap(_rootNode, other._rootNode);
   return *this;
