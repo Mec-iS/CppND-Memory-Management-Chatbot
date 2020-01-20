@@ -50,12 +50,7 @@ public:
     //// STUDENT CODE
     ////
 
-    GraphNode(const GraphNode& other); // copy constructor
-    GraphNode(GraphNode&& other) noexcept; // move constructor
-    GraphNode& operator=(const GraphNode& other); // copy assignment
-    GraphNode& operator=(GraphNode&& other) noexcept; // move assignment
-
-    void MoveChatbotHere(ChatBot&& chatbot);
+    void MoveChatbotHere(ChatBot chatbot);
 
     ////
     //// EOF STUDENT CODE
